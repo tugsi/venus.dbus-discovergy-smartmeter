@@ -1,14 +1,17 @@
-# dbus-fronius-smartmeter Service
+# dbus-discovergy-smartmeter Service
+
+## Under work.... I wanna rename all to discoovergy and make it a little bit more comfortable
 
 ### Purpose
 
 This service is meant to be run on a raspberry Pi with Venus OS from Victron.
 
-The Python script cyclically reads data from the Fronius SmartMeter via the Fronius REST API and publishes information on the dbus, using the service name com.victronenergy.grid. This makes the Venus OS work as if you had a physical Victron Grid Meter installed.
+The Python script cyclically reads data from the Discovergy SmartMeter via the Discovaergy Online API and publishes information on the dbus, using the service name com.victronenergy.grid. This makes the Venus OS work as if you had a physical Victron Grid Meter installed.
 
 ### Configuration
 
-In the Python file, you should put the IP of your Fronius device that hosts the REST API. In my setup, it is the IP of the Fronius Symo, which gets the data from the Fronius Smart Metervia the RS485 connection between them.
+In the Python file, you should put the MeterID of your Discovergy device and the Username / Password of your account.
+If you didn´t know your MeterID, just go to [Discovergy API Meters](https://api.discovergy.com/public/v1/meters) and insert your username password to get all you need. 
 
 ### Installation
 
@@ -76,9 +79,9 @@ The daemon-tools will restart the scriptwithin a few seconds.
 
 In my installation at home, I am using the following Hardware:
 
-- Fronius Symo - PV Grid Tied Inverter (three phases)
-- Fronius Smart Meter 63A-3 - (three phases)
+- HMT2250 - PV Grid Tied Inverter (three phases)
+- Discovergy Gridmeter - (three phases)
 - Victron MultiPlus-II - Battery Inverter (single phase)
 - Raspberry Pi 3B+ - For running Venus OS
-- Pylontech US2000 Plus - LiFePO Battery
+- SEPLOS MASON 280 - LiFePO Battery
 
