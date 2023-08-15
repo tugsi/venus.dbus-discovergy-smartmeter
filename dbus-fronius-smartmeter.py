@@ -53,7 +53,7 @@ class DbusDummyService:
       self._dbusservice.add_path(
         path, settings['initial'], writeable=True, onchangecallback=self._handlechangedvalue)
 
-    gobject.timeout_add(15000, self._update) # pause 200ms before the next request
+    gobject.timeout_add(5000, self._update) # pause 200ms before the next request
 
   def _update(self):
     try:
@@ -74,8 +74,8 @@ class DbusDummyService:
       self._dbusservice['/Ac/L1/Power'] = round(float(meter_data['values']['power1'])/1000,2)
       self._dbusservice['/Ac/L2/Power'] = round(float(meter_data['values']['power2'])/1000,2)
       self._dbusservice['/Ac/L3/Power'] = round(float(meter_data['values']['power3'])/1000,2)
-      self._dbusservice['/Ac/Energy/Forward'] = round(float(meter_data['values']['energy'])/1000,2)
-      self._dbusservice['/Ac/Energy/Reverse'] = round(float(meter_data['values']['energyOut'])/1000,2)
+      self._dbusservice['/Ac/Energy/Forward'] = round(float(meter_data['values']['energy'])/10000000000,3)
+      self._dbusservice['/Ac/Energy/Reverse'] = round(float(meter_data['values']['energyOut'])//10000000000,3)
       logging.info("House Consumption: {:.0f}".format(meter_consumption))
     except:
       logging.info("WARNING: Could not read from Discovergy Smart Meter")
