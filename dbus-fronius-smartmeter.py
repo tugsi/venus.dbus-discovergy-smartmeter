@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
 """
-Created by Ralf Zimmermann (mail@ralfzimmermann.de) in 2020.
-This code and its documentation can be found on: https://github.com/RalfZim/venus.dbus-fronius-smartmeter
+tugsi 2023 
+This code and its documentation can be found on: https://github.com/tugsi/venus.dbus-discovergy-smartmeter/
+Based on https://github.com/RalfZim/venus.dbus-fronius-smartmeter and a Script from the ioBroker-Forum
 Used https://github.com/victronenergy/velib_python/blob/master/dbusdummyservice.py as basis for this service.
 Reading information from the Fronius Smart Meter via http REST API and puts the info on dbus.
 """
@@ -73,8 +74,8 @@ class DbusDummyService:
       self._dbusservice['/Ac/L1/Power'] = round(float(meter_data['values']['power1'])/1000,2)
       self._dbusservice['/Ac/L2/Power'] = round(float(meter_data['values']['power2'])/1000,2)
       self._dbusservice['/Ac/L3/Power'] = round(float(meter_data['values']['power3'])/1000,2)
-      self._dbusservice['/Ac/Energy/Forward'] = round(float(meter_data['values']['power'])/1000,2)
-#      self._dbusservice['/Ac/Energy/Reverse'] = float(meter_data['values']['EnergyReal_WAC_Sum_Produced'])/1000
+      self._dbusservice['/Ac/Energy/Forward'] = round(float(meter_data['values']['energy'])/1000,2)
+      self._dbusservice['/Ac/Energy/Reverse'] = round(float(meter_data['values']['energyOut'])/1000,2)
       logging.info("House Consumption: {:.0f}".format(meter_consumption))
     except:
       logging.info("WARNING: Could not read from Discovergy Smart Meter")
